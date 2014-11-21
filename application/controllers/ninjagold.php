@@ -4,17 +4,14 @@ class NinjaGold extends CI_Controller {
 
 	public function index()
 	{	
-		$this->load->model('Gold');
-		$this->Gold->gold_count();
+		if($this->session->userdata('gold') == NULL) {
+			$this->session->set_userdata('gold', 0);
+			$messages = array();
+			$this->session->set_userdata('messages');
+		}
 		$display['gold'] = $this->session->userdata('gold');
-		// if($this->session->userdata('gold') == NULL) {
-		// 	$this->session->set_userdata('gold', 0);
-		// 	$messages = array();
-		// 	$this->session->set_userdata('messages');
-		// }
-		// $display['gold'] = $this->session->userdata('gold');
+		$display['messages'] = $this->session->userdata('messages');
 		$this->load->view('ninja_gold', $display);
-		// $this->session->sess_destroy();
 	}
 
 	public function farm()
@@ -27,7 +24,7 @@ class NinjaGold extends CI_Controller {
 		$messages = $this->session->userdata('messages');
 		$t=time();
 		$date = date("F jS Y g:i a", $t);
-		$message = 'You searched the farm and found '. $rand . ' gold. - '.$date;
+		$message = '<p class="green">You searched the farm and found '. $rand . ' gold. - '.$date.'</p>';
 		$messages[] = $message;
 		$this->session->set_userdata('messages', $messages);
 		$display['messages']= $this->session->userdata('messages');
@@ -44,7 +41,7 @@ class NinjaGold extends CI_Controller {
 		$messages = $this->session->userdata('messages');
 		$t=time();
 		$date = date("F jS Y g:i a", $t);
-		$message = 'You searched the cave and found '. $rand . ' gold. - '.$date;
+		$message = '<p class="green">You searched the cave and found '. $rand . ' gold. - '.$date.'</p>';
 		$messages[]= $message;
 		$this->session->set_userdata('messages', $messages);
 		$display['messages']= $this->session->userdata('messages');
@@ -61,7 +58,7 @@ class NinjaGold extends CI_Controller {
 		$messages = $this->session->userdata('messages');
 		$t=time();
 		$date = date("F jS Y g:i a", $t);
-		$message = 'You searched the house and found '. $rand . ' gold. - '.$date;
+		$message = '<p class="green">You searched the house and found '. $rand . ' gold. - '.$date.'</p>';
 		$messages[]= $message;
 		$this->session->set_userdata('messages', $messages);
 		$display['messages']= $this->session->userdata('messages');
@@ -70,7 +67,13 @@ class NinjaGold extends CI_Controller {
 
 	public function casino()
 	{
-		$rand = rand(-50, 50);
+		$rand;
+		$odds = rand(1, 10); 
+		if($odds > 3) {
+			$rand = rand(-50, 0);
+		} else {
+			$rand = rand(0, 50);
+		}
 		$temp = $this->session->userdata('gold');
 		$temp += $rand;
 		$this->session->set_userdata('gold', $temp);
@@ -82,6 +85,12 @@ class NinjaGold extends CI_Controller {
 		$messages[]= $message;
 		$this->session->set_userdata('messages', $messages);
 		$display['messages']= $this->session->userdata('messages');
+		$this->load->view('ninja_gold', $display);
+	}
+
+	public function reset() {
+		$this->session->sess_destroy();
+		$display['gold'] = 0;
 		$this->load->view('ninja_gold', $display);
 	}
 }

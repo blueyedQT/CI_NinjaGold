@@ -15,13 +15,17 @@ class Gold extends CI_Model {
 
 	public function farm()
 	{
+		$rand = rand(10, 20);
 		$temp = $this->session->userdata('gold');
-		$temp += 5;
+		$temp += $rand;
 		$this->session->set_userdata('gold', $temp);
-		$display['gold'] = $this->session->userdata('gold');
-		$message = 'You searched the farm and found 5 gold';
-		$this->session->set_userdata('messages', $message);
-		$display['message'] = $this->session->userdata('message');
+		$messages = $this->session->userdata('messages');
+		$t=time();
+		$date = date("F jS Y g:i a", $t);
+		$message = 'You searched the farm and found '. $rand . ' gold. - '.$date;
+		$messages[] = $message;
+		$this->session->set_userdata('messages', $messages);
+		$display['messages']= $this->session->userdata('messages');
 		$this->load->view('ninja_gold', $display);
 	}
 }

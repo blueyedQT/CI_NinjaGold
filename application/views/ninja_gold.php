@@ -45,7 +45,7 @@
 			} 
 		} ?>
 	</div>
-	<form action="process.php" method="post">
+	<form action="/ninjagold/reset" method="post">
 		<input type="hidden" name="reset" value="reset">
 		<input class="refresh" type="submit" name="reset" value="Start Over!">
 	</form>
