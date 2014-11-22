@@ -68,11 +68,14 @@ class NinjaGold extends CI_Controller {
 	public function casino()
 	{
 		$rand;
+		$message;
 		$odds = rand(1, 10); 
 		if($odds > 3) {
 			$rand = rand(-50, 0);
+			$message = '<p class="red">You searched the casino and lost ';
 		} else {
 			$rand = rand(0, 50);
+			$message = '<p class="green">You searched the casino and won ';
 		}
 		$temp = $this->session->userdata('gold');
 		$temp += $rand;
@@ -81,7 +84,7 @@ class NinjaGold extends CI_Controller {
 		$messages = $this->session->userdata('messages');
 		$t=time();
 		$date = date("F jS Y g:i a", $t);
-		$message = 'You searched the casino and found '. $rand . ' gold. - '.$date;
+		$message .= $rand . ' gold. - '.$date.'</p>';
 		$messages[]= $message;
 		$this->session->set_userdata('messages', $messages);
 		$display['messages']= $this->session->userdata('messages');
