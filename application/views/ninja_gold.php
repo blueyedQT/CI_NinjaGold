@@ -4,36 +4,33 @@
 	<meta charset="UTF-8">
 	<title>Ninja Gold Game</title>
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
-	<style>
-
-</style>
 </head>
 <body>
 	<h1>Your Gold: </h1>
 	<div id="goldCounter"><?php echo $gold ?></div>
 
-	<form class="box b1" action="/ninjagold/farm" method="post" >
+	<form class="box b1" action="/ninjagold/process_money" method="post" >
 		<h2>Farm</h2>
 		<h3>(earns 10-20 gold)</h3>
 		<input type="hidden" name="building" value="farm">
 		<input class="goldButton" type="submit" value="Find Gold!">
 	</form>
-	<form class="box b2" action="/ninjagold/cave" method="post">
+	<form class="box b2" action="/ninjagold/process_money" method="post">
 		<h2>Cave</h2>
 		<h3>(earns 5-10 gold)</h3>
-		<input type="hidden" name="outdoors" value="cave">
+		<input type="hidden" name="building" value="cave">
 		<input class="goldButton" type="submit" value="Find Gold!">
 	</form>
-	<form class="box b3" action="/ninjagold/house" method="post">
+	<form class="box b3" action="/ninjagold/process_money" method="post">
 		<h2>House</h2>
 		<h3>(earns 2-5 gold)</h3>
-		<input type="hidden" name="home" value="house">
+		<input type="hidden" name="building" value="house">
 		<input class="goldButton" type="submit" value="Find Gold!">
 	</form>
-	<form class="box b4" action="/ninjagold/casino" method="post">
+	<form class="box b4" action="/ninjagold/process_money" method="post">
 		<h2>Casino!</h2>
 		<h3>(earns/takes 0-50 gold)</h3>
-		<input type="hidden" name="gamble" value="casino">
+		<input type="hidden" name="building" value="casino">
 		<input class="goldButton" type="submit" value="Find Gold!">
 	</form>
 	

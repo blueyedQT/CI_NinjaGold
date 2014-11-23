@@ -58,6 +58,9 @@ p.green {
 p.red {
 	color: red;
 }
+p.gold {
+	color: #FFD700;
+}
 .refresh {
 	background-color: black;
 	margin: 20px 0 0 25px;

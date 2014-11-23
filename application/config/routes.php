@@ -39,7 +39,6 @@
 */
 
 $route['default_controller'] = "ninjagold";
-// $route['/ninjagold/farm'] = " ";
 $route['404_override'] = '';
 
 
