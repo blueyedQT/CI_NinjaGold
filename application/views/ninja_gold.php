@@ -8,7 +8,6 @@
 <body>
 	<h1>Your Gold: </h1>
 	<div id="goldCounter"><?php echo $gold ?></div>
-
 	<form class="box b1" action="/ninjagold/process_money" method="post" >
 		<h2>Farm</h2>
 		<h3>(earns 10-20 gold)</h3>
@@ -32,8 +31,7 @@
 		<h3>(earns/takes 0-50 gold)</h3>
 		<input type="hidden" name="building" value="casino">
 		<input class="goldButton" type="submit" value="Find Gold!">
-	</form>
-	
+	</form>	
 	<h2>Activities:</h2>
 	<div id="activities">
 <?php 	if(!empty($messages)) {
